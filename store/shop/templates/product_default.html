@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav aria-label="breadcrumb" >
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'base' %}">Главная</a></li>
+    <li class="breadcrumb-item"><a href="#">{{ product.category.name }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
+  </ol>
+</nav>
+<div class="row">
+
+    <div class="col-md-4">
+        <img src="{{ product.image.url }}" class="img-fluid">
+    </div>
+    <div class="col-md-8">
+        <h3>{{ product.title }}</h3>
+        <p>Цена: {{ product.price }} Br</p>
+        <p>Описание: {{ product.description }}</p>
+    </div>
+    <p class="mt-4">Характеристики:</p>
+
+    {% if product.category.slug == 'notebook'%}
+        <div class="ml-5">{% include 'notebook_spec.html' %}</div>
+    {% endif %}
+
+    {% if product.category.slug == 'smartphone'%}
+        <div class="ml-5">{% include 'smartphone_spec.html' %}</div>
+    {% endif %}
+
+    {% if product.category.slug == 'gpu'%}
+        <div class="ml-5">{% include 'gpu_spec.html' %}</div>
+    {% endif %}
+
+    {% if product.category.slug == 'cpu'%}
+        <div class="ml-5">{% include 'cpu_spec.html' %}</div>
+    {% endif %}
+
+</div>
+
+
+{% endblock content %}
